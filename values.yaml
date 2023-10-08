@@ -30,12 +30,12 @@ master:
       port: 25565
       # Target port to which the proxy service should be mapped to.
       targetPort: 25565
-  
+
   image:
-    repository: "remcospigot/multipaper-master"
+    repository: "titivoot/multipaper-master"
     # Tag of the Docker image to be used.
     # Defaults to the Chart's app version if left blank.
-    tag: "2.8.8"
+    tag: "latest"
     pullPolicy: IfNotPresent
 
   # Configure the Update Strategy Type for the StatefulSet
@@ -59,7 +59,6 @@ master:
 
   # Section for startup, readiness and liveness probes
   probes:
-
     # Probe used to weed out slow pods
     startupProbe:
       enabled: true
@@ -68,7 +67,7 @@ master:
       failureThreshold: 3
       # How often (in seconds) to perform the probe.
       periodSeconds: 1
-    
+
     # Probe used to define whether a pod is ready or not
     readinessProbe:
       enabled: true
@@ -114,12 +113,12 @@ master:
       - metadata:
           name: "data"
         spec:
-          accessModes: [ "ReadWriteOnce" ]
+          accessModes: ["ReadWriteOnce"]
           storageClassName: null
           resources:
             requests:
               storage: "30Gi"
-  
+
   labels: {}
 
 # MultiPaper server
@@ -134,10 +133,10 @@ server:
   uid: 1001
 
   image:
-    repository: "remcospigot/multipaper"
+    repository: "titivoot/multipaper"
     # Tag of the Docker image to be used.
     # Defaults to the Chart's app version if left blank.
-    tag: "1.18.2-95"
+    tag: "latest"
     pullPolicy: IfNotPresent
 
   resources: {}
@@ -157,7 +156,6 @@ server:
 
   # Section for startup, readiness and liveness probes
   probes:
-
     # Probe used to weed out slow pods
     startupProbe:
       enabled: true
@@ -166,7 +164,7 @@ server:
       failureThreshold: 3
       # How often (in seconds) to perform the probe.
       periodSeconds: 20
-    
+
     # Probe used to define whether a pod is ready or not
     readinessProbe:
       enabled: true
